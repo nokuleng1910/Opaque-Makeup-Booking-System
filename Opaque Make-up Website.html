@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opaque - Luxury Makeup & Beauty</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        nav .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: #2c2c2c;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c2c2c;
+            font-size: 1rem;
+            transition: color 0.3s;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #c9a87c;
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.7);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 8px;
+            font-weight: 300;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #2c2c2c;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 3px;
+            color: #2c2c2c;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #c9a87c;
+        }
+
+        .feature p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #555;
+        }
+
+        .about-image {
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 3rem auto;
+            background: #f9f9f9;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #2c2c2c;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #c9a87c;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: #c9a87c;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .btn-submit:hover {
+            background: #b39266;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card.selected {
+            border-color: #c9a87c;
+            background: #f9f7f4;
+        }
+
+        .service-card h3 {
+            color: #2c2c2c;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card .price {
+            color: #c9a87c;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .booking-steps {
+            max-width: 700px;
+            margin: 3rem auto;
+        }
+
+        .step {
+            display: none;
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .step.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .step-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: all 0.3s;
+        }
+
+        .step-dot.active {
+            background: #c9a87c;
+            transform: scale(1.3);
+        }
+
+        .btn-secondary {
+            padding: 0.8rem 2rem;
+            background: #f0f0f0;
+            color: #2c2c2c;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+            margin-right: 1rem;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-primary {
+            padding: 0.8rem 2rem;
+            background: #c9a87c;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            background: #b39266;
+            transform: translateY(-2px);
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .booking-summary {
+            background: #f9f7f4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .booking-summary h4 {
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+        }
+
+        .booking-summary p {
+            margin: 0.5rem 0;
+            color: #666;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .payment-method {
+            padding: 1.5rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-method:hover {
+            border-color: #c9a87c;
+        }
+
+        .payment-method.selected {
+            border-color: #c9a87c;
+            background: #f9f7f4;
+        }
+
+        .confirmation {
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .confirmation .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 3rem;
+            color: white;
+        }
+
+        footer {
+            background: #2c2c2c;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 5rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">OPAQUE</div>
+            <ul>
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                <li><a href="#" onclick="showPage('about')">About</a></li>
+                <li><a href="#" onclick="showPage('booking')">Book Service</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="home" class="page active">
+        <div class="hero">
+          <div class="hero-bg" style="width: 1700px; height: 600px; background: url('boldbrushes.jpg');"></div>
+
+
+            <div class="hero-content">
+                <h1>OPAQUE</h1>
+                <p>Where Beauty Meets Artistry</p>
+                <a href="#" onclick="showPage('about')" class="btn">Discover Our Story</a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Our Collections</h2>
+            <div class="features">
+                <div class="feature">
+                    <h3>Luxury Palettes</h3>
+                    <p>Curated color stories that inspire creativity. From everyday neutrals to bold statements, each palette is designed with the modern artist in mind.</p>
+                </div>
+                <div class="feature">
+                    <h3>Premium Brushes</h3>
+                    <p>Professional-grade tools featuring rose gold accents. Crafted for precision and elegance, making every application effortless.</p>
+                </div>
+                <div class="feature">
+                    <h3>Artisan Formulas</h3>
+                    <p>Rich, pigmented textures that blend seamlessly. Our unique formulations combine luxury ingredients for a flawless finish.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="about" class="page">
+        <div class="hero" style="height: 60vh;">
+            <div class="hero-bg" style="width: 400px; height: 400px; background: url('powder.jpg');"></div>
+            <div class="hero-content">
+                <h1>About Opaque</h1>
+                <p>A Legacy of Beauty & Innovation</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Our Philosophy</h2>
+                    <p>At Opaque, we believe makeup is more than beauty—it's an art form, a statement, and a celebration of individuality. Founded with a vision to blend luxury with creativity, we craft products that empower you to express your unique style.</p>
+                    <p>Every product in our collection is thoughtfully designed, from the elegant rose gold finishes to the richly pigmented formulas. We source the finest ingredients and work with master artisans to ensure each piece meets our exacting standards.</p>
+                    <p>Our commitment extends beyond beauty. We're dedicated to sustainable practices, cruelty-free testing, and creating products that honor both our customers and our planet.</p>
+                </div>
+                <div class="hero-bg" style="width: 1800px; height: 600px; background: url('powder.jpg');"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="booking" class="page">
+        <div class="hero" style="height: 60vh;">
+            <div class="hero-bg" style="width: 1800px; height: 800px; background: url('pinkbrushes.jpg');"></div>
+            <div class="hero-content">
+                <h1>Book a Service</h1>
+                <p>Transform Your Look with Our Expert Services</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="booking-steps">
+                <div class="step-indicator">
+                    <div class="step-dot active" id="dot-1"></div>
+                    <div class="step-dot" id="dot-2"></div>
+                    <div class="step-dot" id="dot-3"></div>
+                    <div class="step-dot" id="dot-4"></div>
+                </div>
+
+                <!-- Step 1: Select Service -->
+                <div class="step active" id="step-1">
+                    <h2 style="text-align: center; margin-bottom: 2rem;">Select Your Service</h2>
+                    <div class="services-grid">
+                        <div class="service-card" onclick="selectService('bridal', 850)">
+                            <h3>Bridal Makeup</h3>
+                            <div class="price">R850</div>
+                            <p>Complete bridal makeup package including trial session, premium products, and touch-up kit.</p>
+                        </div>
+                        <div class="service-card" onclick="selectService('special-event', 650)">
+                            <h3>Special Event</h3>
+                            <div class="price">R650</div>
+                            <p>Perfect for galas, photoshoots, and celebrations. Includes consultation and premium application.</p>
+                        </div>
+                        <div class="service-card" onclick="selectService('consultation', 255)">
+                            <h3>Makeup Consultation</h3>
+                            <div class="price">R255</div>
+                            <p>Personalized makeup lesson and product recommendations for your unique style.</p>
+                        </div>
+                        <div class="service-card" onclick="selectService('makeover', 750)">
+                            <h3>Complete Makeover</h3>
+                            <div class="price">R750</div>
+                            <p>Full face makeup with skin prep, contouring, and styling guidance.</p>
+                        </div>
+                    </div>
+                    <div class="button-group">
+                        <div></div>
+                        <button class="btn-primary" onclick="nextStep(2)" id="service-next" disabled>Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Personal Details -->
+                <div class="step" id="step-2">
+                    <h2 style="text-align: center; margin-bottom: 2rem;">Your Details</h2>
+                    <form id="personal-form">
+                        <div class="form-group">
+                            <label for="fullname">Full Name *</label>
+                            <input type="text" id="fullname" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email-booking">Email Address *</label>
+                            <input type="email" id="email-booking" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" maxlength="10" pattern="[0-9]{10}" placeholder="0123456789" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Preferred Date *</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Preferred Time *</label>
+                            <input type="time" id="time" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">Special Requests</label>
+                            <textarea id="notes" rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label style="display: flex; align-items: center; cursor: pointer;">
+                                <input type="checkbox" id="terms" required style="margin-right: 0.5rem; width: auto;">
+                                <span>I agree to the <a href="#" onclick="showTerms(event)" style="color: #c9a87c; text-decoration: underline;">Terms and Conditions</a> *</span>
+                            </label>
+                        </div>
+                    </form>
+                    <div class="button-group">
+                        <button class="btn-secondary" onclick="prevStep(1)">Back</button>
+                        <button class="btn-primary" onclick="nextStep(3)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Payment Details -->
+                <div class="step" id="step-3">
+                    <h2 style="text-align: center; margin-bottom: 2rem;">Payment Information</h2>
+                    
+                    <div class="booking-summary">
+                        <h4>Booking Summary</h4>
+                        <p><strong>Service:</strong> <span id="summary-service">-</span></p>
+                        <p><strong>Date:</strong> <span id="summary-date">-</span></p>
+                        <p><strong>Time:</strong> <span id="summary-time">-</span></p>
+                        <p style="font-size: 1.1rem; margin-top: 1rem;"><strong>Full Amount:</strong> R<span id="summary-price">0</span></p>
+                        <p style="font-size: 1.3rem; color: #c9a87c;"><strong>Deposit Required (50%):</strong> R<span id="summary-deposit">0</span></p>
+                        <p style="font-size: 0.9rem; color: #888; margin-top: 0.5rem;">*A 50% deposit is required to secure your booking. The remaining balance will be due on the day of service.</p>
+                    </div>
+
+                    <h4 style="margin-bottom: 1rem;">Select Payment Method</h4>
+                    <div class="payment-methods">
+                        <div class="payment-method" onclick="selectPayment('card')">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">💳</div>
+                            <div>Credit/Debit Card</div>
+                        </div>
+                        <div class="payment-method" onclick="selectPayment('paypal')">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🅿️</div>
+                            <div>PayPal</div>
+                        </div>
+                        <div class="payment-method" onclick="selectPayment('bank')">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏦</div>
+                            <div>Bank Transfer</div>
+                        </div>
+                    </div>
+
+                    <form id="payment-form">
+                        <div id="card-payment-section">
+                            <div class="form-group">
+                                <label for="cardname">Cardholder Name *</label>
+                                <input type="text" id="cardname">
+                            </div>
+                            <div class="form-group">
+                                <label for="cardnumber">Card Number *</label>
+                                <input type="text" id="cardnumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                <div class="form-group">
+                                    <label for="expiry">Expiry Date *</label>
+                                    <input type="text" id="expiry" placeholder="MM/YY" maxlength="5">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV *</label>
+                                    <input type="text" id="cvv" placeholder="123" maxlength="3">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="bank-transfer-section" style="display: none;">
+                            <div style="background: #f0f8ff; padding: 2rem; border-radius: 8px; border-left: 4px solid #c9a87c;">
+                                <h4 style="margin-bottom: 1rem; color: #2c2c2c;">Bank Transfer Details</h4>
+                                <p style="margin: 0.5rem 0;"><strong>Bank Name:</strong> First National Bank (FNB)</p>
+                                <p style="margin: 0.5rem 0;"><strong>Account Name:</strong> Opaque Beauty (Pty) Ltd</p>
+                                <p style="margin: 0.5rem 0;"><strong>Account Number:</strong> 62847591023</p>
+                                <p style="margin: 0.5rem 0;"><strong>Branch Code:</strong> 250655</p>
+                                <p style="margin: 0.5rem 0;"><strong>Account Type:</strong> Business Cheque Account</p>
+                                <p style="margin: 0.5rem 0;"><strong>Reference:</strong> Your Name + Phone Number</p>
+                                <p style="margin-top: 1rem; padding: 1rem; background: #fff3cd; border-radius: 5px; color: #856404;">
+                                    <strong>Important:</strong> Please use your name and phone number as the payment reference and email proof of payment to bookings@opaque.co.za
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div id="paypal-section" style="display: none;">
+                            <div style="background: #f0f8ff; padding: 2rem; border-radius: 8px; text-align: center;">
+                                <h4 style="margin-bottom: 1rem; color: #2c2c2c;">PayPal Payment</h4>
+                                <p style="margin-bottom: 1rem;">You will be redirected to PayPal to complete your payment securely.</p>
+                                <p style="color: #666;"><strong>PayPal Email:</strong> payments@opaque.co.za</p>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="button-group">
+                        <button class="btn-secondary" onclick="prevStep(2)">Back</button>
+                        <button class="btn-primary" onclick="processPayment()">Complete Booking</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Confirmation -->
+                <div class="step" id="step-4">
+                    <div class="confirmation">
+                        <div class="checkmark">✓</div>
+                        <h2 style="color: #4CAF50; margin-bottom: 1rem;">Booking Confirmed!</h2>
+                        <p style="font-size: 1.2rem; color: #666; margin-bottom: 2rem;">Thank you for booking with Opaque. We've sent a confirmation email to your address.</p>
+                        
+                        <div class="booking-summary" style="max-width: 400px; margin: 2rem auto;">
+                            <h4>Your Booking Details</h4>
+                            <p><strong>Confirmation #:</strong> <span id="confirm-number">-</span></p>
+                            <p><strong>Service:</strong> <span id="confirm-service">-</span></p>
+                            <p><strong>Date:</strong> <span id="confirm-date">-</span></p>
+                            <p><strong>Time:</strong> <span id="confirm-time">-</span></p>
+                            <p><strong>Total Amount:</strong> R<span id="confirm-total">-</span></p>
+                            <p><strong>Deposit Paid (50%):</strong> R<span id="confirm-price">-</span></p>
+                            <p><strong>Balance Due:</strong> R<span id="confirm-balance">-</span></p>
+                            <p style="font-size: 0.9rem; color: #888; margin-top: 0.5rem;">*Balance to be paid on the day of service</p>
+                        </div>
+
+                        <button class="btn-primary" onclick="resetBooking()" style="margin-top: 2rem;">Book Another Service</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="contact" class="page">
+        <div class="hero" style="height: 60vh;">
+            <div class="hero-bg" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%221920%22 height=%221080%22><rect fill=%22%2364758c%22 width=%221920%22 height=%221080%22/><text x=%2250%25%22 y=%2250%25%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22%23fff%22 opacity=%220.3%22>Get In Touch</text></svg>');"></div>
+            <div class="hero-content">
+                <h1>Contact Us</h1>
+                <p>We'd Love to Hear From You</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Send Us a Message</h2>
+            <form class="contact-form" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Opaque. All Rights Reserved.</p>
+        <p>Where Beauty Meets Artistry</p>
+    </footer>
+
+    <script>
+        let currentStep = 1;
+        let selectedService = null;
+        let selectedPrice = 0;
+        let selectedPaymentMethod = null;
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function selectService(serviceName, price) {
+            // Remove previous selection
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selection to clicked card
+            event.currentTarget.classList.add('selected');
+            
+            selectedService = serviceName;
+            selectedPrice = price;
+            
+            // Enable next button
+            document.getElementById('service-next').disabled = false;
+        }
+
+        function nextStep(step) {
+            // Validate current step
+            if (step === 2 && !selectedService) {
+                alert('Please select a service first');
+                return;
+            }
+            
+            if (step === 3) {
+                const form = document.getElementById('personal-form');
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+                
+                // Check if terms are accepted
+                const termsCheckbox = document.getElementById('terms');
+                if (!termsCheckbox.checked) {
+                    alert('Please accept the Terms and Conditions to proceed');
+                    return;
+                }
+                
+                // Update summary
+                updateSummary();
+            }
+            
+            // Hide current step
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            document.getElementById(`dot-${currentStep}`).classList.remove('active');
+            
+            // Show next step
+            currentStep = step;
+            document.getElementById(`step-${step}`).classList.add('active');
+            document.getElementById(`dot-${step}`).classList.add('active');
+            
+            window.scrollTo(0, 0);
+        }
+        
+        function showTerms(event) {
+            event.preventDefault();
+            const termsText = `OPAQUE BEAUTY - TERMS AND CONDITIONS
+
+1. BOOKING & DEPOSIT POLICY
+   • A 50% non-refundable deposit is required to secure your booking
+   • The deposit must be paid within 24 hours of making the booking
+   • The remaining 50% balance is due on the day of service
+   • Failure to pay the deposit will result in automatic cancellation of your booking
+
+2. CANCELLATION POLICY
+   • Cancellations made 7+ days before appointment: Deposit will be credited for future use (valid for 6 months)
+   • Cancellations made 3-6 days before appointment: 50% of deposit forfeited
+   • Cancellations made less than 72 hours before appointment: Full deposit forfeited
+   • No-shows will forfeit the entire deposit
+
+3. RESCHEDULING
+   • Appointments may be rescheduled once without penalty if done 48+ hours in advance
+   • Additional rescheduling attempts may incur a R100 administrative fee
+
+4. PAYMENT METHODS
+   • We accept Credit/Debit Cards, Bank Transfers, and PayPal
+   • Bank transfer payments must include your name and phone number as reference
+   • Proof of payment must be emailed to bookings@opaque.co.za
+
+5. SERVICE DELIVERY
+   • Services will be provided at the agreed time and location
+   • Late arrivals may result in shortened service time
+   • We reserve the right to refuse service if client arrives intoxicated
+
+6. ALLERGIES & SKIN SENSITIVITIES
+   • Clients must disclose any allergies or skin sensitivities before service
+   • Patch tests are available upon request 48 hours before appointment
+   • Opaque is not liable for adverse reactions if information was not disclosed
+
+7. LIABILITY
+   • While we use premium products, individual reactions may vary
+   • Opaque Beauty is not liable for dissatisfaction with personal style preferences
+   • Professional advice will be provided, but final decisions rest with the client
+
+By proceeding with your booking, you acknowledge that you have read, understood, and agree to these Terms and Conditions.`;
+            
+            alert(termsText);
+        }
+
+        function prevStep(step) {
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            document.getElementById(`dot-${currentStep}`).classList.remove('active');
+            
+            currentStep = step;
+            document.getElementById(`step-${step}`).classList.add('active');
+            document.getElementById(`dot-${step}`).classList.add('active');
+            
+            window.scrollTo(0, 0);
+        }
+
+        function updateSummary() {
+            const serviceName = selectedService.split('-').map(word => 
+                word.charAt(0).toUpperCase() + word.slice(1)
+            ).join(' ');
+            
+            const depositAmount = selectedPrice / 2;
+            
+            document.getElementById('summary-service').textContent = serviceName;
+            document.getElementById('summary-date').textContent = document.getElementById('date').value;
+            document.getElementById('summary-time').textContent = document.getElementById('time').value;
+            document.getElementById('summary-price').textContent = selectedPrice;
+            document.getElementById('summary-deposit').textContent = depositAmount.toFixed(0);
+        }
+
+        function selectPayment(method) {
+            document.querySelectorAll('.payment-method').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            selectedPaymentMethod = method;
+            
+            // Show/hide payment sections based on selection
+            const cardSection = document.getElementById('card-payment-section');
+            const bankSection = document.getElementById('bank-transfer-section');
+            const paypalSection = document.getElementById('paypal-section');
+            
+            // Hide all sections first
+            cardSection.style.display = 'none';
+            bankSection.style.display = 'none';
+            paypalSection.style.display = 'none';
+            
+            // Remove required from card fields
+            document.getElementById('cardname').required = false;
+            document.getElementById('cardnumber').required = false;
+            document.getElementById('expiry').required = false;
+            document.getElementById('cvv').required = false;
+            
+            // Show relevant section
+            if (method === 'card') {
+                cardSection.style.display = 'block';
+                document.getElementById('cardname').required = true;
+                document.getElementById('cardnumber').required = true;
+                document.getElementById('expiry').required = true;
+                document.getElementById('cvv').required = true;
+            } else if (method === 'bank') {
+                bankSection.style.display = 'block';
+            } else if (method === 'paypal') {
+                paypalSection.style.display = 'block';
+            }
+        }
+
+        function processPayment() {
+            if (!selectedPaymentMethod) {
+                alert('Please select a payment method');
+                return;
+            }
+            
+            // Only validate card form if card payment is selected
+            if (selectedPaymentMethod === 'card') {
+                const form = document.getElementById('payment-form');
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+            }
+            
+            // Generate confirmation number
+            const confirmNumber = 'OPQ' + Math.floor(Math.random() * 1000000);
+            
+            // Update confirmation details
+            const serviceName = selectedService.split('-').map(word => 
+                word.charAt(0).toUpperCase() + word.slice(1)
+            ).join(' ');
+            
+            const depositAmount = selectedPrice / 2;
+            const balanceAmount = selectedPrice - depositAmount;
+            
+            document.getElementById('confirm-number').textContent = confirmNumber;
+            document.getElementById('confirm-service').textContent = serviceName;
+            document.getElementById('confirm-date').textContent = document.getElementById('date').value;
+            document.getElementById('confirm-time').textContent = document.getElementById('time').value;
+            document.getElementById('confirm-total').textContent = selectedPrice;
+            document.getElementById('confirm-price').textContent = depositAmount.toFixed(0);
+            document.getElementById('confirm-balance').textContent = balanceAmount.toFixed(0);
+            
+            // Move to confirmation step
+            nextStep(4);
+        }
+
+        function resetBooking() {
+            // Reset all forms
+            document.getElementById('personal-form').reset();
+            document.getElementById('payment-form').reset();
+            
+            // Reset selections
+            document.querySelectorAll('.service-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelectorAll('.payment-method').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            selectedService = null;
+            selectedPrice = 0;
+            selectedPaymentMethod = null;
+            
+            // Reset to step 1
+            document.getElementById(`step-${currentStep}`).classList.remove('active');
+            document.getElementById(`dot-${currentStep}`).classList.remove('active');
+            
+            currentStep = 1;
+            document.getElementById('step-1').classList.add('active');
+            document.getElementById('dot-1').classList.add('active');
+            
+            document.getElementById('service-next').disabled = true;
+            
+            window.scrollTo(0, 0);
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            event.target.reset();
+        }
+
+        // Format card number with spaces
+        document.addEventListener('DOMContentLoaded', function() {
+            // Phone number validation - only allow digits
+            const phoneInput = document.getElementById('phone');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    // Remove any non-digit characters
+                    e.target.value = e.target.value.replace(/\D/g, '').slice(0, 10);
+                });
+            }
+            
+            const cardInput = document.getElementById('cardnumber');
+            if (cardInput) {
+                cardInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\s/g, '');
+                    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+                    e.target.value = formattedValue;
+                });
+            }
+            
+            const expiryInput = document.getElementById('expiry');
+            if (expiryInput) {
+                expiryInput.addEventListener('input', function(e) {
+                    let value = e.target.value.replace(/\D/g, '');
+                    if (value.length >= 2) {
+                        value = value.slice(0, 2) + '/' + value.slice(2, 4);
+                    }
+                    e.target.value = value;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
